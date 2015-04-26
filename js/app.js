@@ -18,6 +18,6 @@ requirejs.config({
 //     //loaded and can be used here now.
 // });
 
-requirejs(['app/menu']);
-
-// require(['app/active'], function (active){});
+requirejs(['app/menu'], function(){
+	requirejs(['app/loadpage']);
+});
