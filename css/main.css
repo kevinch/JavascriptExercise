@@ -32,8 +32,8 @@ a.active{color:red}
 	    margin: 0;
 	    padding: 0
 	}
-	#menuwrapper ul li.current-menu-item {
-	    background: #1bc2a2
+	#menuwrapper ul li a.active {
+	    background: #2c3e50
 	}
 	#menuwrapper ul li:hover {
 	    background: #2c3e50
@@ -78,7 +78,6 @@ body{
 }
 
 h1 {
-	text-align: center;
 	margin-top: 300px;
 }
 .result {

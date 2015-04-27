@@ -11,13 +11,6 @@ requirejs.config({
     }
 });
 
-// Start the main app logic.
-// requirejs(['jquery', 'app/menu'],
-// function   ($, menu) {
-//     //jQuery and the app/sub module are all
-//     //loaded and can be used here now.
-// });
-
 requirejs(['app/menu'], function(){
 	requirejs(['app/loadpage']);
 });
