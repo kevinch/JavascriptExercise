@@ -10,6 +10,7 @@ define(function (require) {
     var count = function (beginningNumber, endingNumber) {
         var deferral = Q.defer();
         var newNumber = 0;
+        
         if (endingNumber < beginningNumber) {
             deferral.reject("endingNumber before beginningNumber");
         }
@@ -21,10 +22,11 @@ define(function (require) {
         }
         
         console.log("in sampleQ: " + newNumber + typeof(newNumber));
+
         deferral.resolve(newNumber);
  
         return deferral.promise;
-    };    return {
-        count: count
-    };
+    };    
+
+    return { count: count };
 });

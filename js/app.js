@@ -12,6 +12,7 @@ requirejs.config({
     }
 });
 
+/*
 require(['app/sampleQ', 'q'], function (sample, Q) {
     // do something with the sample object
     sample.count(10, 20).then(function (countResponse) {
@@ -25,8 +26,8 @@ require(['app/sampleQ', 'q'], function (sample, Q) {
         console.log("error in sample: " + error);
     });
 });
+*/
 
-
-// requirejs(['app/menu'], function(){
-// 	requirejs(['app/loadpage']);
-// });
+requirejs(['app/menu'], function(){
+	requirejs(['app/loadpage']);
+});
