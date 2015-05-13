@@ -12,7 +12,8 @@ define(function (require) {
 				var menu    = document.getElementById("menu"),
 					as      = menu.querySelectorAll("a"),
 					request = new XMLHttpRequest(),
-					result  = document.getElementById("result");
+					result  = document.getElementById("result"),
+					route   = e.target.dataset.route;
 
 				function resetActive(){
 		  			Array.prototype.forEach.call(as, function(el){
@@ -20,7 +21,7 @@ define(function (require) {
 					});
 				}
 
-				request.open('GET', "api/"+e.target.id+".json", true);
+				request.open('GET', "api/"+route+"/data.json", true);
 
 				request.onload = function() {
 			  		if (this.status >= 200 && this.status < 400) {
@@ -30,7 +31,7 @@ define(function (require) {
 						// add active class to current element
 						e.target.setAttribute("class","active");
 						// fill with result
-			  			result.innerHTML = data.title;
+			  			result.innerHTML = data.index.title;
 
 			  			deferral.resolve();
 		  			} else {

@@ -6,14 +6,25 @@ define(function (require) {
 	var domenu = function(){
 		var deferral = Q.defer();
 
-		// creating nav element and appending to body
-		var nav = document.createElement("nav");
-		nav.setAttribute("id","menuwrapper");
-		document.body.appendChild(nav);
+		function createElement(type, id){
+			var el=document.createElement(type);
+			el.setAttribute("id",id);
+			document.body.appendChild(el);
+		}
 
+		// creating console element
+		createElement("div","console");
+
+		// creating h1 element
+		createElement("h1","result");
+
+		// creating nav element and appending to body
+		createElement("nav","menuwrapper");
+		var nav = document.getElementById("menuwrapper");
+		
 		// json call
 		var request = new XMLHttpRequest();
-		request.open('GET', 'api/data.json', true);
+		request.open('GET', 'api/menu/menu.json', true);
 
 		request.onload = function() {
 			if (this.status >= 200 && this.status < 400) {
@@ -29,7 +40,7 @@ define(function (require) {
 						if (object.status == "enabled"){
 							h = object.path;
 						} 
-						menu.push( "<li><a href=# id="+object.path+">"+object.text+"</a>" );
+						menu.push( "<li><a data-status='"+object.status+"' data-route='"+object.route+"' href=# id="+object.path+">"+object.text+"</a>" );
 						if ( object.menu ){
 							menu.push( "<ul>" );
 							object.menu.forEach(function(item){
