@@ -1,44 +1,63 @@
-define(["app/menu"], function () {
+define(function (require) {
+	"use strict";
 
-	document.getElementById("menu").addEventListener("click", function(e) {
-		if(e.target && e.target.nodeName == "A") {
+	var Q = require('q');
 
-			var menu    = document.getElementById("menu"),
-				as      = menu.querySelectorAll("a"),
-				request = new XMLHttpRequest(),
-				result  = document.getElementById("result");
+	var doloadpage = function(){
+		var deferral = Q.defer();
 
-			function resetActive(){
-	  			Array.prototype.forEach.call(as, function(el){
-					el.classList.remove("active");
-				});
-			}
+		document.getElementById("menu").addEventListener("click", function(e) {
+			if(e.target && e.target.nodeName == "A") {
 
-			request.open('GET', "api/"+e.target.id+".json", true);
+				var menu    = document.getElementById("menu"),
+					as      = menu.querySelectorAll("a"),
+					request = new XMLHttpRequest(),
+					result  = document.getElementById("result");
 
-			request.onload = function() {
-		  		if (this.status >= 200 && this.status < 400) {
-		  			var data = JSON.parse(this.response);
-		  			// remove active classes
-		  			resetActive();
-					// add active class to current element
-					e.target.setAttribute("class","active");
-					// fill with result
-		  			result.innerHTML = data.title;
-	  			} else {
-				    resetActive();
-				    result.innerHTML = "We reached our target server, but it returned an error";
+				function resetActive(){
+		  			Array.prototype.forEach.call(as, function(el){
+						el.classList.remove("active");
+					});
 				}
-			};
 
-			request.onerror = function() {
-				resetActive();
-			  	result.innerHTML = "There was a connection error of some sort";
-			};
+				request.open('GET', "api/"+e.target.id+".json", true);
 
-			request.send();
+				request.onload = function() {
+			  		if (this.status >= 200 && this.status < 400) {
+			  			var data = JSON.parse(this.response);
+			  			// remove active classes
+			  			resetActive();
+						// add active class to current element
+						e.target.setAttribute("class","active");
+						// fill with result
+			  			result.innerHTML = data.title;
 
-		} 
-	});
+			  			deferral.resolve();
+		  			} else {
+					    resetActive();
+					    var str = "We reached our target server, but it returned an error";
+					    result.innerHTML = str;
+					   	deferral.reject(str);
+					}
+				};
+
+				request.onerror = function() {
+					resetActive();
+					var str = "There was a connection error of some sort";
+				  	result.innerHTML = str;
+				  	deferral.reject(str);
+				};
+
+				request.send();
+
+			} 
+
+		});
+
+		return deferral.promise;
+
+	};
+
+	return { doloadpage: doloadpage };
 
 });

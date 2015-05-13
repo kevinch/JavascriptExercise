@@ -1,69 +1,75 @@
-// promise with Q
-	// define(["jquery"], function (require) {
+define(function (require) {
+	"use strict";
 
-	// 	var Q = require('q');
+	var Q = require('q');
+	
+	var domenu = function(){
+		var deferral = Q.defer();
 
+		// creating nav element and appending to body
+		var nav = document.createElement("nav");
+		nav.setAttribute("id","menuwrapper");
+		document.body.appendChild(nav);
 
+		// json call
+		var request = new XMLHttpRequest();
+		request.open('GET', 'api/data.json', true);
 
-	// });
+		request.onload = function() {
+			if (this.status >= 200 && this.status < 400) {
 
+				var ul = document.createElement("ul"),
+					data = JSON.parse(this.response),
+					menu = [],
+					result  = document.getElementById("result");
 
-// old
-define( function () {
+					function build(object){
+						var h = "#";
+						
+						if (object.status == "enabled"){
+							h = object.path;
+						} 
+						menu.push( "<li><a href=# id="+object.path+">"+object.text+"</a>" );
+						if ( object.menu ){
+							menu.push( "<ul>" );
+							object.menu.forEach(function(item){
+								build(item);
+							});
+							menu.push( "</ul>" );
+						}
 
-	// creating nav element and appending to body
-	var nav = document.createElement("nav");
-	nav.setAttribute("id","menuwrapper");
-	document.body.appendChild(nav);
+						menu.push("</li>");
+					};
 
-	// json call
-	var request = new XMLHttpRequest();
-	request.open('GET', 'api/data.json', true);
-
-	request.onload = function() {
-	  if (this.status >= 200 && this.status < 400) {
-	    
-	    var ul = document.createElement("ul"),
-	    	data = JSON.parse(this.response),
-			menu = [];
-	  
-	  	function build(object){
-			var h = "#";
-			if (object.status == "enabled"){
-				h = object.path;
-			} 
-
-			menu.push( "<li><a href=# id="+object.path+">"+object.text+"</a>" );
-			
-			if ( object.menu ){
-				menu.push( "<ul>" );
-				object.menu.forEach(function(item){
+				data.menu.forEach(function(item){
 					build(item);
 				});
-				menu.push( "</ul>" );
+
+				// creating inner menu and appending to nav
+				ul.setAttribute("id","menu");
+				ul.innerHTML = menu.join("");
+				nav.appendChild(ul);
+
+				deferral.resolve();
+
+			} else {
+				var str = "We reached our target server, but it returned an error";
+				result.innerHTML = str;
+				deferral.reject(str);
 			}
+		};
 
-			menu.push("</li>");
-	  	};
+		request.onerror = function() {
+			var str = "There was a connection error of some sort"
+			result.innerHTML = str;
+			deferral.reject(str);
+		};
 
-		data.menu.forEach(function(item){
-			build(item);
-		});
+		request.send();
 
-		// creating inner menu and appending to nav
-		ul.setAttribute("id","menu");
-		ul.innerHTML = menu.join("");
-		nav.appendChild(ul);
-
-	  } else {
-	    console.log("We reached our target server, but it returned an error");
-	  }
+		return deferral.promise;
 	};
 
-	request.onerror = function() {
-	  console.log("There was a connection error of some sort");
-	};
-
-	request.send();
-
+	return { domenu: domenu };
+	
 });
