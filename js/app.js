@@ -3,22 +3,27 @@ requirejs.config({
     paths: {
         app:    '../app',
         Q:      '../lib',
-        lodash: '../lib/lodash'
+        lodash: '../lib/lodash',
+        jquery: '../lib/jquery'
     }
 });
 
-// using Q for Promises
-require(['lodash', 'app/menu', 'app/loadpage', 'q'], function (_, menu, loadpage, Q) {
+require(
+        [
+	        'lodash', 
+	        'app/menu', 
+	        'app/loadpage', 
+	        'app/menu_actions', 
+	        'q'
+        ], function (_, menu, loadpage, menu_actions, Q) {
+
 	console.log('lodash version: ' + _.VERSION);
 	menu.domenu().then(function (){
         console.log("domenu successful");
-        loadpage.doloadpage();
+        
+        menu_actions.domenu_actions();
+        // loadpage.doloadpage();
     }).catch(function (error) {
         console.log("error in domenu: " + error);
     });
 });
-
-// old technique with just requirejs:
-// requirejs(['app/menu'], function(){
-// 	requirejs(['app/loadpage']);
-// });

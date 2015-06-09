@@ -22,7 +22,7 @@ define(function (require) {
 		}
 
 		// json call
-		request.open('GET', 'api/menu/menu.json', true);
+		request.open('GET', 'api/menu/data.json', true);
 
 		request.onload = function() {
 			if (this.status >= 200 && this.status < 400) {
@@ -33,15 +33,15 @@ define(function (require) {
 					result    = document.getElementById("result");
 
 				// High-order function
-				function isEnabled(item){
-					if ( _.get(item, 'status') == 'enabled' ){
-						console.log(item.text+': good for menu');
-						return buildMenu(item);
-					} else {
-						console.log(item.text+': no good for menu');
-						return false;
-					}
-				};
+					// function isEnabled(item){
+					// 	if ( _.get(item, 'status') == 'enabled' ){
+					// 		console.log(item.text+': good for menu');
+					// 		return buildMenu(item);
+					// 	} else {
+					// 		console.log(item.text+': no good for menu');
+					// 		return false;
+					// 	}
+					// };
 
 				// building the menu structure
 				function buildMenu(object){
@@ -51,20 +51,23 @@ define(function (require) {
 						text   = _.get(object, 'text');
 
 					menu.push( "<li><a data-status='"+status+"' data-route='"+route+"' href=# id="+path+">"+text+"</a>" );
-					// Not in use currently as we just use status.enabled and not .dropdown 
-					// if ( object.menu ){
-					// 	menu.push( "<ul>" );
-					// 	object.menu.forEach(function(item){
-					// 		buildMenu(item);
-					// 	});
-					// 	menu.push( "</ul>" );
-					// }
+
+					// Building sub-sections 
+					if ( object.menu ){
+						menu.push( "<ul>" );
+						object.menu.forEach(function(item){
+							buildMenu(item);
+						});
+						menu.push( "</ul>" );
+					}
+					
 					menu.push("</li>");
 				};
 
-				// starting to buidl the menu
+				// starting to build the menu
 				jsonParse.menu.forEach(function(item){
-					isEnabled( item );
+				// 	// isEnabled( item );
+					buildMenu(item);
 				});
 
 				// creating inner menu and appending to nav

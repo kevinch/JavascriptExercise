@@ -4,63 +4,69 @@ a.active{color:red}
 
 /* menu */
 	#menuwrapper {
-			position: absolute; top:0;
-			left: 50%; transform: translateX(-50%);
+		position: absolute; top:0; left: 0; width: 300px;
+		height: 100%; background:#dcdcdc;
 	}
 	#menuwrapper ul {
-	  list-style: none;
+	  list-style: decimal;
+	  list-style-position: inside;
 	  position: relative;
-	  float: left;
+	  /*float: left;*/
 	  margin: 0;
 	  padding: 0;
-	  background: #1bc2a2;
+	  /*background: #1bc2a2;*/
+	  /*width: 300px;*/
 	}
 	#menuwrapper ul a {
 	    display: block;
-	    color: #fff;
+	    /*color: #fff;*/
 	    text-decoration: none;
 	    font-size: 12px;
 	    line-height: 32px;
 	    padding: 0 15px;
 	}
 	#menuwrapper ul a.active {
-	    	background: #008369
+	    	/*background: #008369*/
 	    }
 	#menuwrapper ul li {
 	    position: relative;
-	    float: left;
+	    /*float: left;*/
 	    margin: 0;
-	    padding: 0
+	    padding: 0;
+	    /*width: 300px;*/
 	}
 	#menuwrapper ul li a.active {
-	    background: #2c3e50
+	    /*background: #2c3e50*/
 	}
 	#menuwrapper ul li:hover {
-	    background: #2c3e50
+	    /*background: #2c3e50*/
 	}
 	#menuwrapper ul ul {
 	    display: none;
-	    position: absolute;
-	    top: 100%;
-	    left: 0;
-	    background: #1bc2a2;
+	    /*position: absolute;*/
+	    width: auto;
+	    margin-left: 10%;
+	    /*top: 100%;*/
+	    /*left: 0;*/
+	    /*background: #1bc2a2;*/
 	    padding: 0
 	}
 	#menuwrapper ul ul li {
-	    float: none;
-	    width: 180px
+	    /*float: none;*/
+	    /*width: 180px*/
+	    width: auto;
 	}
 	#menuwrapper ul ul a {
 	    line-height: 120%;
 	    padding: 10px 15px
 	}
 	#menuwrapper ul ul ul {
-	    top: 0;
-	    left: 100%
+	    /*top: 0;
+	    left: 100%*/
 	}
-	#menuwrapper ul li:hover > ul {
+	/*#menuwrapper ul li:hover > ul {
 	    display: block
-	}
+	}*/
 
 html {
   box-sizing: border-box;
