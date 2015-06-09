@@ -7,13 +7,9 @@ requirejs.config({
     }
 });
 
-require(['lodash'], function(_) {
-  console.log('lodash version: ' + _.VERSION);
-  // _.filter
-});
-
 // using Q for Promises
 require(['lodash', 'app/menu', 'app/loadpage', 'q'], function (_, menu, loadpage, Q) {
+	console.log('lodash version: ' + _.VERSION);
 	menu.domenu().then(function (){
         console.log("domenu successful");
         loadpage.doloadpage();
