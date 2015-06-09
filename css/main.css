@@ -42,14 +42,19 @@ a.active{color:red}
 	    /*background: #2c3e50*/
 	}
 	#menuwrapper ul ul {
-	    display: none;
-	    /*position: absolute;*/
 	    width: auto;
 	    margin-left: 10%;
-	    /*top: 100%;*/
-	    /*left: 0;*/
 	    /*background: #1bc2a2;*/
-	    padding: 0
+	    padding: 0;
+	    max-height: 0;
+		overflow: hidden;
+
+		-webkit-transition: max-height 0.8s;
+		-moz-transition: max-height 0.8s;
+		transition: max-height 0.8s;
+	}
+	#menuwrapper ul .open {
+		max-height: 200px;
 	}
 	#menuwrapper ul ul li {
 	    /*float: none;*/

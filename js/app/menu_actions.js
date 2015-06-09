@@ -5,8 +5,17 @@ define(["jquery"], function (require) {
 	// var Q = require('q');
 	
 	var domenu_actions = function(){
-		$('#menu').on('click', function(){
-			
+		$('#menu a').on('click', function(){
+			var $this = $(this);
+
+			// console.log($this);
+
+			if( $this.data('status') === 'dropdown' ){
+				$('ul').removeClass('open');
+				$this.next('ul').addClass('open');
+			} else {
+				// console.log('nope');
+			}
 		});
 	};
 
