@@ -8,14 +8,21 @@ define(["jquery"], function (require) {
 		$('#menu a').on('click', function(){
 			var $this = $(this);
 
-			// console.log($this);
-
-			if( $this.data('status') === 'dropdown' ){
-				$('ul').removeClass('open');
-				$this.next('ul').addClass('open');
-			} else {
-				// console.log('nope');
+			if( $this.hasClass('active') ){
+				$this.removeClass('active');
+			}else if( $this.data('status') != 'disabled' ){
+				$this.addClass('active');
 			}
+			
+			if( $this.next('ul').hasClass('open') ){
+				$this.next('ul').removeClass('open');
+				$this.removeClass('active');
+			}else {
+				$this.next('ul').addClass('open');
+			}
+			
+			
+
 		});
 	};
 

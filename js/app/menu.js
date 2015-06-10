@@ -31,6 +31,7 @@ define(function (require) {
 					jsonParse = JSON.parse(this.response),
 					menu      = [],
 					result    = document.getElementById("result");
+					
 
 				// High-order function
 					// function isEnabled(item){
