@@ -9,21 +9,28 @@ requirejs.config({
 });
 
 require(
-        [
-	        'lodash', 
-	        'app/menu', 
-	        'app/loadpage', 
-	        'app/menu_actions', 
-	        'q'
-        ], function (_, menu, loadpage, menu_actions, Q) {
+  [
+    'lodash', 
+    'app/menu', 
+    'app/loadpage', 
+    'app/menu_animations', 
+    'app/seg_nav',
+    'q'
+  ], function (_, menu, loadpage, menu_actions, seg_nav, Q) {
 
+	// test with lodash version
 	console.log('lodash version: ' + _.VERSION);
+
+	// promise
 	menu.domenu().then(function (){
-        console.log("domenu successful");
-        
-        menu_actions.domenu_actions();
-        // loadpage.doloadpage();
-    }).catch(function (error) {
-        console.log("error in domenu: " + error);
-    });
+    // a test
+    console.log("domenu successful");
+    
+    menu_actions.domenu_animations();
+    seg_nav.dosegnav();
+    loadpage.doloadpage();
+
+  }).catch(function (error) {
+      console.log("Some error: " + error);
+  });
 });

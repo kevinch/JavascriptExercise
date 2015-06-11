@@ -4,7 +4,7 @@ define(["jquery"], function (require) {
 
 	// var Q = require('q');
 	
-	var domenu_actions = function(){
+	var domenu_animations = function(){
 		$('#menu a').on('click', function(){
 			var $this = $(this);
 
@@ -21,11 +21,9 @@ define(["jquery"], function (require) {
 				$this.next('ul').addClass('open');
 			}
 			
-			
-
 		});
 	};
 
-	return { domenu_actions: domenu_actions };
+	return { domenu_animations: domenu_animations };
 	
 });

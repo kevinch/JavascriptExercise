@@ -1,4 +1,4 @@
-define(function (require) {
+define(function (require, arg) {
 	"use strict";
 
 	var Q = require('q');
@@ -6,14 +6,19 @@ define(function (require) {
 	var doloadpage = function(){
 		var deferral = Q.defer();
 
-		document.getElementById("menu").addEventListener("click", function(e) {
-			if(e.target && e.target.nodeName == "A") {
+		if(arg){
+			console.dir('argument from #next: '+arg);
+		}
 
+		document.getElementById("menu").addEventListener("click", function(e) {
+
+			if ( e.target.getAttribute('data-status') == 'enabled' ){
+						
 				var menu    = document.getElementById("menu"),
-					as      = menu.querySelectorAll("a"),
-					request = new XMLHttpRequest(),
-					result  = document.getElementById("result"),
-					route   = e.target.dataset.route;
+						as      = menu.querySelectorAll("a"),
+						request = new XMLHttpRequest(),
+						result  = document.getElementById("result"),
+						apth    = e.target.dataset.path;
 
 				function resetActive(){
 		  			Array.prototype.forEach.call(as, function(el){
@@ -21,10 +26,10 @@ define(function (require) {
 					});
 				}
 
-				request.open('GET', "api/"+route+"/data.json", true);
+				request.open('GET', "api/"+apth+"/data.json", true);
 
 				request.onload = function() {
-			  		if (this.status >= 200 && this.status < 400) {
+			  	if (this.status >= 200 && this.status < 400) {
 			  			var data = JSON.parse(this.response);
 			  			// remove active classes
 			  			resetActive();
@@ -51,6 +56,8 @@ define(function (require) {
 
 				request.send();
 
+			}else {
+				console.log("link disabled.");
 			} 
 
 		});

@@ -51,7 +51,7 @@ define(function (require) {
 						path   = _.get(object, 'path'),
 						text   = _.get(object, 'text');
 
-					menu.push( "<li><a data-status='"+status+"' data-route='"+route+"' href=# id="+path+">"+text+"</a>" );
+					menu.push( "<li data-path="+path+" data-status='"+status+"'><a data-path="+path+" data-status='"+status+"' data-route='"+route+"' href=# >"+text+"</a>" );
 
 					// Building sub-sections 
 					if ( object.menu ){

@@ -11,16 +11,12 @@ a:hover{text-decoration:underline}
 	  list-style: decimal;
 	  list-style-position: inside;
 	  position: relative;
-	  /*float: left;*/
 	  margin: 0;
 	  padding: 0;
-	  /*background: #1bc2a2;*/
-	  /*width: 300px;*/
 	  text-transform: uppercase;
 	}
 	#menuwrapper ul a {
 	    display: block;
-	    /*color: #fff;*/
 	    text-decoration: none;
 	    font-size: 12px;
 	    line-height: 32px;
@@ -31,35 +27,27 @@ a:hover{text-decoration:underline}
 	    }
 	#menuwrapper ul li {
 	    position: relative;
-	    /*float: left;*/
 	    margin: 0;
 	    padding: 0;
-	    /*width: 300px;*/
 	}
 	#menuwrapper ul li a.active {
-	    /*background: #2c3e50*/
 	}
 	#menuwrapper ul li:hover {
-	    /*background: #2c3e50*/
 	}
 	#menuwrapper ul ul {
-	    width: auto;
-	    margin-left: 10%;
-	    /*background: #1bc2a2;*/
-	    padding: 0;
-	    max-height: 0;
+		width: auto;
+		margin-left: 10%;
+		padding: 0;
+		max-height: 0;
 		overflow: hidden;
-
-		-webkit-transition: max-height 0.5s;
-		-moz-transition: max-height 0.5s;
-		transition: max-height 0.5s;
+		-webkit-transition: all 1s ease;
+		-moz-transition: all 1s ease;
+		transition: all 1s ease;
 	}
 	#menuwrapper ul .open {
-		max-height: 600px;
+		max-height: 400px;
 	}
 	#menuwrapper ul ul li {
-	    /*float: none;*/
-	    /*width: 180px*/
 	    width: auto;
 	}
 	#menuwrapper ul ul a {
@@ -67,12 +55,21 @@ a:hover{text-decoration:underline}
 	    padding: 10px 15px
 	}
 	#menuwrapper ul ul ul {
-	    /*top: 0;
-	    left: 100%*/
 	}
 	/*#menuwrapper ul li:hover > ul {
 	    display: block
 	}*/
+
+/* seg nav */
+	#prev, #next {
+		position: absolute; bottom: 0; z-index: 2; left: 0;
+		width: 150px; height: 80px; background: #333;
+		text-align: center; color:#fff; line-height: 80px;
+		font-weight: normal; 
+	}
+	#next {
+		left: 150px;
+	}
 
 html {
   box-sizing: border-box;
@@ -84,14 +81,14 @@ html {
 body{
   font-family: "Helvetica";
   padding: 50px 20px 0;
-  background: #f4f4f7;
   color: #444;
-  margin: 0;
+  margin: 0 0 0 300px;
 }
 
 h1 {
-	margin-top: 300px;
+	margin-top: 100px;
 }
 .result {
 
 }
+.hidden { display: none; }
