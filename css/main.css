@@ -1,11 +1,11 @@
-a{text-decoration:none}
+a{text-decoration:none; color:#333;}
 a:hover{text-decoration:underline}
-/*a.active{color:red}*/
+a.active{color:white; background:#ace700;}
 
 /* menu */
 	#menuwrapper {
 		position: absolute; top:0; left: 0; width: 300px;
-		height: 100%; background:#dcdcdc;
+		height: 100%; background:whitesmoke;
 	}
 	#menuwrapper ul {
 	  list-style: decimal;
@@ -22,17 +22,11 @@ a:hover{text-decoration:underline}
 	    line-height: 32px;
 	    padding: 0 15px;
 	}
-	#menuwrapper ul a.active {
-	    	color: red;
-	    }
 	#menuwrapper ul li {
 	    position: relative;
 	    margin: 0;
 	    padding: 0;
-	}
-	#menuwrapper ul li a.active {
-	}
-	#menuwrapper ul li:hover {
+	    font-size:10px;
 	}
 	#menuwrapper ul ul {
 		width: auto;
@@ -82,6 +76,7 @@ body{
   font-family: "Helvetica";
   padding: 50px 20px 0;
   color: #444;
+  background: #ddd;
   margin: 0 0 0 300px;
 }
 

@@ -10,14 +10,16 @@ define(["jquery"], function (require) {
 
 			if( $this.hasClass('active') ){
 				$this.removeClass('active');
-			}else if( $this.data('status') != 'disabled' ){
+			} else if( $this.data('status') != 'disabled' ){
+				$('#menu a').removeClass('active');
 				$this.addClass('active');
 			}
 			
 			if( $this.next('ul').hasClass('open') ){
 				$this.next('ul').removeClass('open');
 				$this.removeClass('active');
-			}else {
+			} else {
+				$('ul').removeClass('open');
 				$this.next('ul').addClass('open');
 			}
 			

@@ -32,7 +32,6 @@ define(function (require) {
 					menu      = [],
 					result    = document.getElementById("result");
 					
-
 				// High-order function
 					// function isEnabled(item){
 					// 	if ( _.get(item, 'status') == 'enabled' ){

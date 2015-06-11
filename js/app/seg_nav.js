@@ -8,6 +8,9 @@ define(["jquery", "app/loadpage"], function ($, loadpage) {
 			createElement("a","next", "Next page");
 			createElement("a","prev", "Previous page");
 
+			var menu = document.getElementById("menu"),
+				as   = menu.querySelectorAll("a");
+
 			function createElement(type, id, text){
 				var el=document.createElement(type);
 				setAttributes(el, {"href": "#", "id": id, "class": "hidden"});
@@ -16,9 +19,9 @@ define(["jquery", "app/loadpage"], function ($, loadpage) {
 			}
 
 			function setAttributes(el, attrs) {
-			  for(var key in attrs) {
-			    el.setAttribute(key, attrs[key]);
-			  }
+				for(var key in attrs) {
+					el.setAttribute(key, attrs[key]);
+				}
 			}
 
 		$('#menu a').on('click', function(){
@@ -38,7 +41,8 @@ define(["jquery", "app/loadpage"], function ($, loadpage) {
 		});
 
 		$('#next').on('click', function(){
-			var aim = $('#menu .active').parent('li').next('[data-status="enabled"]').data('path');
+			var aim = $('#menu .active').parent('li').find('a [data-status="enabled"]').data('path');
+			console.dir(aim);
 			// var c = true;
 			// while(c){
 			// 	if( leNextLi.data-status == enabled){
@@ -47,7 +51,7 @@ define(["jquery", "app/loadpage"], function ($, loadpage) {
 			// 	}
 			// }
 			// .next('li').find('a').data('path');
-			console.log("argument to be passed to loadpage: "+aim);
+			// console.log("argument to be passed to loadpage: "+aim);
 			loadpage.doloadpage(aim);
 		});
 	};
