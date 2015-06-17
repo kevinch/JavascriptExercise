@@ -23,14 +23,12 @@ require(
 
 	// promise
 	menu.domenu().then(function (){
-    // a test
-    console.log("domenu successful");
     
-    menu_actions.domenu_animations();
-    seg_nav.dosegnav();
-    loadpage.doloadpage();
+	    menu_actions.domenu_animations();
+	    seg_nav.dosegnav();
+	    loadpage.doloadpage();
 
-  }).catch(function (error) {
+  	}).catch(function (error) {
       console.log("Some error: " + error);
   });
 });

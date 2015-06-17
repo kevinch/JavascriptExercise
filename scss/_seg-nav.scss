@@ -1,0 +1,10 @@
+/* secundary nav */
+#prev, #next {
+	position: absolute; bottom: 0; z-index: 2; left: 0;
+	width: 150px; height: 80px; background: #333;
+	text-align: center; color:#fff; line-height: 80px;
+	font-weight: normal; 
+}
+#next {
+	left: 150px;
+}

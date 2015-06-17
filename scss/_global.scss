@@ -1,0 +1,53 @@
+a{text-decoration:none; color:#333;}
+a:hover{text-decoration:underline}
+a.active{color:white; background:#ace700;}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+  font-family: "Helvetica";
+  @include container(80em);
+  padding: 50px 20px 0;
+  color: #444;
+  background: #ddd;
+  margin: 0 0 0 300px;
+}
+
+h1 {
+	margin-top: 100px;
+}
+.result {
+
+}
+.hidden { display: none; }
+
+small {
+	font-size: 10px; color: #999; text-transform: none;
+}
+
+a[data-status="disabled"]:after {
+	position: absolute;
+	content: "\2717";
+	color: red;
+	right: 10px;
+	top: 2px;
+}
+a[data-status="enabled"]:after {
+	position: absolute;
+	content: "\2713";
+	color: green;
+	right: 10px;
+	top: 2px;
+}
+a[data-status="dropdown"]:after {
+	position: absolute;
+	content:'\2198';
+	color: #999;
+	right: 10px;
+	top: 2px;
+}
